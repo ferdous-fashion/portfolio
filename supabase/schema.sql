@@ -15,3 +15,16 @@ create policy "public reads certificates" on certificates for select using (true
 create policy "admin reads messages" on messages for select to authenticated using (true);
 insert into storage.buckets (id,name,public,file_size_limit,allowed_mime_types) values ('portfolio','portfolio',true,10485760,array['image/jpeg','image/png','image/webp','application/pdf']) on conflict do nothing;
 create policy "public media access" on storage.objects for select using (bucket_id='portfolio'); create policy "admin upload media" on storage.objects for insert to authenticated with check (bucket_id='portfolio'); create policy "admin modify media" on storage.objects for update to authenticated using (bucket_id='portfolio'); create policy "admin delete media" on storage.objects for delete to authenticated using (bucket_id='portfolio');
+
+-- Safe repair for an existing project: creates only missing Storage policies.
+do $$ begin
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='admin upload media') then
+    create policy "admin upload media" on storage.objects for insert to authenticated with check (bucket_id='portfolio');
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='admin modify media') then
+    create policy "admin modify media" on storage.objects for update to authenticated using (bucket_id='portfolio');
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='admin delete media') then
+    create policy "admin delete media" on storage.objects for delete to authenticated using (bucket_id='portfolio');
+  end if;
+end $$;
