@@ -28,3 +28,4 @@ Deploy on Vercel; add all environment variables and set `NEXT_PUBLIC_SITE_URL` t
 - `supabase/schema.sql` database/RLS/storage
 
 Replace stock visuals, example contact details, and demo certificate data before publishing.
+Admin dashboard deployment update.
