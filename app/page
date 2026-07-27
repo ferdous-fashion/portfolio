@@ -1,0 +1,2 @@
+import Portfolio from '@/components/portfolio';
+export default function Home(){const jsonLd={"@context":"https://schema.org","@type":"Person",name:"Ferdous Rahman Fakir",jobTitle:"Fashion Design Student",affiliation:{"@type":"CollegeOrUniversity",name:"Port City International University"},address:{"@type":"PostalAddress",addressLocality:"Chattogram",addressCountry:"BD"}};return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/><Portfolio/></>}
