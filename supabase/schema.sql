@@ -28,3 +28,6 @@ do $$ begin
     create policy "admin delete media" on storage.objects for delete to authenticated using (bucket_id='portfolio');
   end if;
 end $$;
+
+-- Required for custom cover images on PDF items in the Portfolio Gallery.
+alter table media add column if not exists cover_url text;
