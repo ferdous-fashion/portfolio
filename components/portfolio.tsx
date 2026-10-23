@@ -278,7 +278,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           initial={{ scale: 0.97, y: 15 }}
           animate={{ scale: 1, y: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative mx-auto mt-8 mb-8 w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/15 bg-[#171717]"
+          className="relative mx-auto mt-6 sm:mt-4 mb-8 w-full max-w-[1500px] max-h-[92vh] overflow-y-auto rounded-3xl border border-white/15 bg-[#171717]"
         >
           <button
             onClick={onClose}
@@ -289,9 +289,15 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </button>
           <button
             onClick={() => setZoom(project.cover)}
-            className="relative block aspect-[16/9] w-full bg-black"
+            className="relative block w-full bg-black max-h-[42vh]"
           >
-            <Image fill className="object-contain" src={project.cover} alt={project.title} />
+            <Image
+              fill
+              className="object-contain"
+              src={project.cover}
+              alt={project.title}
+              style={{ maxHeight: '42vh' }}
+            />
             <span className="absolute bottom-4 left-4 rounded-full bg-black/70 px-3 py-2 text-[10px] font-bold uppercase tracking-widest">
               Tap image to view full size
             </span>
@@ -351,7 +357,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setZoom(null)}
-            className="fixed inset-0 z-[220] grid place-items-center bg-black/97 p-4"
+            className="fixed inset-0 z-[220] grid place-items-center bg-black/97 p-4 backdrop-blur-md"
           >
             <button
               aria-label="Close image"
