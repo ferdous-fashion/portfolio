@@ -278,14 +278,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           initial={{ scale: 0.97, y: 15 }}
           animate={{ scale: 1, y: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative mx-auto mt-12 sm:mt-4 mb-8 w-full max-w-4xl max-h-[80vh] overflow-y-auto rounded-3xl border border-white/15 bg-[#171717]"
+          className="relative mx-auto mt-8 mb-8 w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/15 bg-[#171717]"
         >
           <button
             onClick={onClose}
             aria-label="Close project"
-            className="absolute right-4 top-4 z-[210] grid h-14 w-14 place-items-center rounded-full border border-white/30 bg-red text-white shadow-glow"
+            className="absolute right-4 top-4 z-[210] grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-red text-white shadow-glow"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
           <button
             onClick={() => setZoom(project.cover)}
@@ -356,9 +356,9 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             <button
               aria-label="Close image"
               onClick={() => setZoom(null)}
-              className="absolute right-5 top-5 z-[230] grid h-14 w-14 place-items-center rounded-full border border-white/30 bg-red text-white shadow-glow"
+              className="absolute right-5 top-5 z-[230] grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-red text-white shadow-glow"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
             <div
               onClick={(e) => e.stopPropagation()}
@@ -439,12 +439,8 @@ function Archive({ source = demoGallery, onOpen, onClose }: { source: Project[];
               {...reveal}
               transition={{ delay: i * 0.08 }}
               onClick={() => {
-                if (x.pdf_url) {
-                  window.open(x.pdf_url, '_blank');
-                } else {
-                  onOpen?.();
-                  setActive(x);
-                }
+                onOpen?.();
+                setActive(x);
               }}
               className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5 text-left"
               key={x.id}
